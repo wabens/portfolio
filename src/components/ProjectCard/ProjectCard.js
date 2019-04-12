@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
+import { FormHelperText } from '@material-ui/core';
 
 
 const styles = {
@@ -9,17 +10,29 @@ const styles = {
       minHeight:457,
       margin: 10,
       padding: 10,
+      display: "flex",
+      flexDirection: "column",
+    //   alignContent: "top",
+    //   justifyContent: "center"
     },
+    cardDiv: {
+        margin: "0 auto 0 auto",
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        textAlign: "center"
+       
+    }
 }
 
 const ProjectCard = (props) => {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      <img src={props.character.url} alt={props.character.name} />
-      <div>
-        <p>Character Name:  {props.character.name}</p>
-        <p>Anime:  {props.character.show}</p>
+      <img className={classes.cardDiv} height='200' width='200'src={props.project.thumbnail} alt={props.project.name} />
+      <div className={classes.cardDiv}>
+        <p>{props.project.name}</p>
+        <p>{props.project.description}</p>
       </div>
     </Card>
   )
