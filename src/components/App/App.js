@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import Projects from '../Projects/Projects';
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -7,9 +9,15 @@ class App extends Component {
     return (
       <section>
         <p>Empty Page</p>
+        <Projects/>
       </section>
+
     );
   }
 }
 
-export default App;
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+})
+
+export default connect(mapReduxStateToProps)(App);

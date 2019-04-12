@@ -4,14 +4,30 @@ import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import axios from 'axios';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery, put } from 'redux-saga/effects';
+
+
+function* getPortfolio(action) {
+  try {
+    console.log('GET portfolio', action);
+    const getResponse = yield axios.get('/portfolio'); 
+    yield put({type: 'SET_PROJECTS', payload: getResponse.data});
+ }catch (error) {
+    console.log(`Couldn't get portfolio`, error);
+    alert(`Sorry, couldn't get the portfolio. Try again later`);
+  };
+};
+
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('GET_PORTFOLIO', getPortfolio)
 
 }
 
