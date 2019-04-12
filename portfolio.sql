@@ -20,5 +20,7 @@ VALUES ('React'), ('jQuery'), ('Node'), ('SQL'), ('Redux'), ('HTML');
 INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
 VALUES ('Saga Gardens', 'a small group project', '', '', 'https://github.com/wabens/redux-saga-garden', '2019-04-11', '1');
 
-SELECT * FROM "projects" 
-JOIN "tags" ON "tags"."id" = "projects"."tag_id"
+SELECT "projects"."id", "projects"."name", "projects"."description", "projects"."thumbnail", "projects"."website",
+"projects"."github", "projects"."date_completed", "tags"."name" as "tag_name" FROM "projects" 
+JOIN "tags" ON "tags"."id" = "projects"."tag_id";
+

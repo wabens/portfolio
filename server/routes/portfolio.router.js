@@ -4,7 +4,10 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
   console.log('Getting all projects');
-  let sqlText = `SELECT * FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id";`
+  let sqlText = 
+      `SELECT "projects"."id", "projects"."name", "projects"."description", "projects"."thumbnail", "projects"."website",
+"projects"."github", "projects"."date_completed", "tags"."name" as "tag_name" FROM "projects" 
+JOIN "tags" ON "tags"."id" = "projects"."tag_id";`;
   pool.query(sqlText)
     .then ( result => {
       res.send(result.rows)

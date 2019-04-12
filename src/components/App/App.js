@@ -5,9 +5,9 @@ class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="App">
+      <section>
         <p>Empty Page</p>
-      </div>
+      </section>
     );
   }
 }
