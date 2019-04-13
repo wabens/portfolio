@@ -13,13 +13,27 @@ JOIN "tags" ON "tags"."id" = "projects"."tag_id";`;
       res.send(result.rows)
     })
     .catch( error => {
-      console.log(`Couldn't get data `, error);
+      console.log(`Couldn't get project data `, error);
+      res.sendStatus(500);
+    })
+})
+
+router.get('/tags', (req, res) => {
+  console.log('Getting all tags');
+  let sqlText =
+    `SELECT * FROM "tags";`
+  pool.query(sqlText)
+    .then(result => {
+      res.send(result.rows)
+    })
+    .catch(error => {
+      console.log(`Couldn't get tags data `, error);
       res.sendStatus(500);
     })
 })
 
 router.post('/', (req, res) => {
-  console.log(`Adding a project`);
+  console.log(`Adding a project`, req.body);
   let sqlText = `INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
       VALUES ($1, $2, $3, $4, $5, $6, $7);`
   pool.query(sqlText, [req.body.name, req.body.description, req.body.thumbnail, req.body.website, 

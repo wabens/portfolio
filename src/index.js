@@ -24,10 +24,37 @@ function* getPortfolio(action) {
   };
 };
 
+function* getTags(action) {
+  try {
+    console.log('GET tags', action);
+    const getResponse = yield axios.get('/portfolio/tags'); 
+    yield put({type: 'SET_TAGS', payload: getResponse.data});
+ }catch (error) {
+    console.log(`Couldn't get tags`, error);
+    alert(`Sorry, couldn't get tags. Try again later.`);
+  };
+};
+
+function* postProject(action){
+    try{
+        console.log(`POST project`, action.payload);
+        yield axios.post(`/portfolio`, action.payload)
+        yield put({type: 'GET_PORTFOLIO'})
+        
+    }catch(error){
+        console.log(`Problem adding project`, error);
+        alert(`Sorry, couldn't send project. Try again later.`)
+        
+
+    }
+}
+
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('GET_PORTFOLIO', getPortfolio)
+    yield takeEvery('GET_PORTFOLIO', getPortfolio);
+    yield takeEvery('GET_TAGS', getTags);
+    yield takeEvery('POST_PROJECT', postProject)
 
 }
 
