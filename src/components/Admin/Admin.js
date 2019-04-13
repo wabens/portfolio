@@ -35,7 +35,9 @@ class Admin extends Component {
     handleChange = (event) => {
         //console.log(`handleChange `, event.target.value);
         this.setState({
+           
             project:{
+                 ...this.state.project,
                 [event.target.name]: event.target.value
             }
         })
@@ -43,14 +45,14 @@ class Admin extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`submit`);
+        console.log(`submit`, this.state.project);
         this.props.dispatch({type: "POST_PROJECT", payload: this.state.project})
         
     }
         
 
     render() {
-        console.log(`state `, this.state.project);
+        // console.log(`state `, this.state.project);
         
         return (
         <section>
@@ -120,11 +122,12 @@ class Admin extends Component {
                     <FormControl>
                         <InputLabel>Tag</InputLabel>
                         <NativeSelect
+                            defaultValue={7}
                             value={this.state.project.tag_id}
                             onChange={this.handleChange}
                             input={<Input name="tag_id" id="age-native-helper" />}
                         >
-                        <option value={null}></option>
+                        <option value={7}></option>
                         {this.props.reduxState.tags.map(tag => 
                             <option key={tag.id} value={tag.id}>{tag.name}</option>
                         )}

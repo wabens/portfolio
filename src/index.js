@@ -38,8 +38,8 @@ function* getTags(action) {
 function* postProject(action){
     try{
         console.log(`POST project`, action.payload);
-        yield axios.post(`/portfolio`, action.payload)
-        yield put({type: 'GET_PORTFOLIO'})
+        yield axios.post(`/portfolio`, action.payload);
+        yield put({type: 'GET_PORTFOLIO'});
         
     }catch(error){
         console.log(`Problem adding project`, error);
