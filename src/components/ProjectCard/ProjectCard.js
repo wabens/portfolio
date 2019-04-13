@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
-import { FormHelperText } from '@material-ui/core';
 
 
 const styles = {
@@ -25,20 +25,23 @@ const styles = {
     }
 }
 
-const ProjectCard = (props) => {
-  const { classes } = props;
-  return (
-    <Card className={classes.card}>
-      <img className={classes.cardDiv} height='200' width='200'src={props.project.thumbnail} alt={props.project.name} />
-      <div className={classes.cardDiv}>
-        <p>{props.project.name}</p>
-        <p>{props.project.description}</p>
-      </div>
-    </Card>
-  )
+class ProjectCard extends Component {
+    
+  render(){
+        const { classes } = this.props;
+    return (
+        <Card className={classes.card}>
+        <img className={classes.cardDiv} height='200' width='300'src={this.props.project.thumbnail} alt={this.props.project.name} />
+        <div className={classes.cardDiv}>
+            <p>{this.props.project.name}</p>
+            <p>{this.props.project.description}</p>
+        </div>
+        </Card>
+    )
 }
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-})
+}
+// const mapReduxStateToProps = reduxState => ({
+//     reduxState
+// })
 
 export default withStyles(styles)(ProjectCard);

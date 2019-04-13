@@ -12,10 +12,10 @@ class Projects extends Component {
     render() {
     return (
       <section>
-          {JSON.stringify(this.props.reduxState)}
+          {/* {JSON.stringify(this.props.reduxState)} */}
         <Grid container>
             { 
-            this.props.reduxState.projects.map(project => 
+            this.props.reduxState.projects.map(project =>
                 <Grid item>
                     <ProjectCard key={project.id} project={project}/>
                     {/* {JSON.stringify(project)} */}
