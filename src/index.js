@@ -44,8 +44,6 @@ function* postProject(action){
     }catch(error){
         console.log(`Problem adding project`, error);
         alert(`Sorry, couldn't send project. Try again later.`)
-        
-
     }
 }
 

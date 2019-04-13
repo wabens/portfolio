@@ -8,23 +8,16 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-
-
-
-
-
 class Admin extends Component {
-     // Renders the entire app on the DOM
-
     state={
         project: {
             name: '', 
             description: '', 
-            thumbnail: '', 
+            thumbnail: '',
             website: '', 
             github: '',
-            date_completed: '', 
-            tag_id: '',
+            date_completed: '01-01-2019',
+            tag_id: '7',
         }
     }
 
@@ -110,11 +103,13 @@ class Admin extends Component {
                 </Grid>
                 <Grid item>
                     <TextField
-                        label="Date"
+                        label="Date Complete"
+                        type="date"
                         value={this.state.project.date_completed}
                         name = 'date_completed'
                         onChange={this.handleChange}
                         margin="normal"
+                        defaultValue={'2019-01-01'}
                         variant="outlined"
                     />
                 </Grid>
@@ -122,7 +117,6 @@ class Admin extends Component {
                     <FormControl>
                         <InputLabel>Tag</InputLabel>
                         <NativeSelect
-                            defaultValue={7}
                             value={this.state.project.tag_id}
                             onChange={this.handleChange}
                             input={<Input name="tag_id" id="age-native-helper" />}
@@ -135,7 +129,7 @@ class Admin extends Component {
                     </FormControl>
                 </Grid>
                 <Grid item>
-                    <Button onClick={this.handleSubmit}>Submit</Button>
+                    <Button color='primary' variant='contained' onClick={this.handleSubmit}>Submit</Button>
                 </Grid>
 
             </Grid>
