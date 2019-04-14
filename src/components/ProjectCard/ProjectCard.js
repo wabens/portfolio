@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 
 
 const styles = {
@@ -33,13 +34,10 @@ class ProjectCard extends Component {
         website: null, 
         github: null,
         date_completed: null,
-        tag: null
+        tag: <p>{this.props.project.tag_name}</p>
     }
 
     elementsToRender=()=>{
-        
-        
-        console.log(`tags reducer `, this.props.reduxState.tags);
         
         if (Boolean(this.props.project.description) === Boolean(1)){
             this.setState({description: 
@@ -51,27 +49,34 @@ class ProjectCard extends Component {
         }
         if (Boolean(this.props.project.website) === Boolean(1)){
             this.setState({website: 
-            <p>{this.props.project.website}</p>
+            <p>Website: {this.props.project.website}</p>
             })
         }
         if (Boolean(this.props.project.gitub) === Boolean(1)){
             this.setState({github: 
-            <p>{this.props.project.github}</p>
+            <p>Github: {this.props.project.github}</p>
             })
         }
         if (Boolean(this.props.project.date_completed) === Boolean(1)){
             this.setState({date_completed: 
-            <p>{this.props.project.date_completed}</p>
+            <p>Completed: {moment(this.props.project.date_completed).format('ll')}</p>
             })
         }
-        if (Boolean(this.props.project.tag_id) === Boolean(1)){
-            let current_tag=this.props.project.tag_id
-            this.setState({tag: 
-            <p>{this.props.tags}</p>
+        // if (Boolean(this.props.project.tag_name) === Boolean(1)){
+        //     this.setState({tag: 
+        //     <p>{this.props.project.tag_name}</p>
+        //     })  
+        // } 
+        if (this.props.project.tag_name === 'None'){
+            console.log(`in tag=none`);
+            
+            this.setState({
+                tag: null
             })
         }
 
         console.log(`tag state`, this.state.tag);
+        console.log(`date complete`, moment(this.props.project.date_completed).format('ll'))
     }
 
     componentDidMount(){

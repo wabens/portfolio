@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Projects from '../Projects/Projects';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -134,6 +135,7 @@ class Admin extends Component {
 
             </Grid>
             </form>
+            <Projects/>
         </section>
         );
   }
