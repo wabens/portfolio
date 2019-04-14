@@ -7,20 +7,25 @@ import moment from 'moment';
 
 const styles = {
     card: {
-      minWidth: 295,
-      minHeight:457,
+      minWidth: 400,
+      minHeight:200,
       margin: 10,
       padding: 10,
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
     },
     cardDiv: {
         margin: "0 auto 0 auto",
         display: "flex",
         flexDirection: "column",
         alignContent: "center",
-        textAlign: "center"
+        textAlign: "center",
+        padding: 8,
        
+    },
+    cardText: {
+        margin: 8,
+        textAlign: 'left',
     }
 }
 
@@ -34,14 +39,14 @@ class ProjectCard extends Component {
         website: null, 
         github: null,
         date_completed: null,
-        tag: <p>{this.props.project.tag_name}</p>
+        tag: null
     }
 
     elementsToRender=()=>{
-        
+        const { classes } = this.props;
         if (Boolean(this.props.project.description) === Boolean(1)){
             this.setState({description: 
-            <p>{this.props.project.description}</p>
+            <p className={classes.cardText}>{this.props.project.description}</p>
             })
         }
         if (Boolean(this.props.project.thumbnail) === Boolean(1)){
@@ -49,17 +54,17 @@ class ProjectCard extends Component {
         }
         if (Boolean(this.props.project.website) === Boolean(1)){
             this.setState({website: 
-            <p>Website: {this.props.project.website}</p>
+            <p className={classes.cardText}>Website: {this.props.project.website}</p>
             })
         }
         if (Boolean(this.props.project.gitub) === Boolean(1)){
             this.setState({github: 
-            <p>Github: {this.props.project.github}</p>
+            <p className={classes.cardText}>Github: {this.props.project.github}</p>
             })
         }
         if (Boolean(this.props.project.date_completed) === Boolean(1)){
             this.setState({date_completed: 
-            <p>Completed: {moment(this.props.project.date_completed).format('ll')}</p>
+            <p className={classes.cardText}>Completed: {moment(this.props.project.date_completed).format('ll')}</p>
             })
         }
         // if (Boolean(this.props.project.tag_name) === Boolean(1)){
@@ -67,11 +72,11 @@ class ProjectCard extends Component {
         //     <p>{this.props.project.tag_name}</p>
         //     })  
         // } 
-        if (this.props.project.tag_name === 'None'){
+        if (this.props.project.tag_name !== 'None'){
             console.log(`in tag=none`);
             
             this.setState({
-                tag: null
+                tag: <p className={classes.cardText}>Tags: {this.props.project.tag_name}</p>
             })
         }
 
